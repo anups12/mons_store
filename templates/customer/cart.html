@@ -26,12 +26,9 @@
                                 <td width="25%">
                                     <div class="display-flex align-center">
                                         <div class="img-product">
-                                            {% if not request.user.is_authenticated %}
+                                        
                                          <a href="{% url 'product_detail' li.product.id %}"><img src="{{li.product.pic1}}" alt="" class="mCS_img_loaded"></a>
-                                            {% else %}
-                                         <a href="{% url 'product_detail' li.product.id %}"><img src="{{li.product.pic1.url}}" alt="" class="mCS_img_loaded"></a>
-
-                                         {% endif %}
+                                          
                                         </div>
 
                                         <div class="name-product">{{li.product.name}}
