@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Customer Register{% endblock title %}
+{% block body%}
+
+<div class="container shadow p-4 mx-auto" style="background-color: rgb(197, 221, 243);">
+    <div class="resitereration">
+        <label class="fs-2 fw-bold text-info " for="">Fill the form to create account </label>
+        <a class="btn btn-outline-primary text-center fw-bold pt-2" href="{% url 'create_seller' %}">Register as
+            Seller</a>
+    </div>
+    <hr>
+    <form action="" class="fs-2 p-3" method="post">
+        {% csrf_token %}
+            <div class="form-row mt-3">
+                <div class="form-group col-md-12">
+                    <label class="col-sm-4 col-form-label">{{form.username.label}} :-</label>
+                    {{form.username}}
+                </div>
+            </div>
+            <div class="form-row mt-3">
+                <div class="form-group col-md-12">
+                    <label class="col-sm-4 col-form-label">{{form.email.label}} :-</label>
+                    {{form.email}}
+                </div>
+            </div>
+            <div class="form-row mt-3">
+                <div class="form-group col-md-12">
+                    <label class="col-sm-4 col-form-label">{{form.password1.label}} :-</label>
+                    {{form.password1}}
+                </div>
+            </div>
+            <div class="form-row mt-3">
+                <div class="form-group col-md-12">
+                    <label class="col-sm-4 col-form-label">{{form.password2.label}} :-</label>
+                    {{form.password2}}
+                </div>
+            </div>
+        <input type="submit" class="btn btn-outline-success w-100 p-2 mt-2" value="Create User">
+    </form>
+    <h6 class="my-2 p-2">Already have an account <a href="{% url 'logincust' %}">:- Login Here</a></h6>
+</div>
+
+
+    {% endblock body%}

@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Productdetail{% endblock title %}
+{% block body%}
+<div class="sub">
+<div class="container">
+    <div class="card-1">
+        <div class="container-fliud">
+            <div class="wrapper-1 row">
+                <div class="preview-1 col-md-6">
+
+                    <div class="preview-1-pic tab-content" id="tab">
+                        <div class="tab-pane active"><img id="pic-product" src="{{product.pic1.url}}" height="500px" />
+                        </div>
+                    </div>
+                    <ul class="preview-1-thumbnail nav nav-tabs">
+                        <li class="active"><button
+                                onclick="document.getElementById('pic-product').src='{{product.pic1.url}}'"><img
+                                    class="image-hover" src="{{product.pic1.url}}" /></button></li>
+                        <li><button onclick="document.getElementById('pic-product').src='{{product.pic2.url}}'"><img
+                                    class="image-hover" src="{{product.pic2.url}}" /></button></li>
+                        <li><button onclick="document.getElementById('pic-product').src='{{product.pic3.url}}'"><img
+                                    class="image-hover" src="{{product.pic3.url}}" /></button></li>
+                        <li><button onclick="document.getElementById('pic-product').src='{{product.pic4.url}}'"><img
+                                    class="image-hover" src="{{product.pic4.url}}" /></button></li>
+                        <li><button onclick="document.getElementById('pic-product').src='{{product.pic1.url}}'"><img
+                                    class="image-hover" src="{{product.pic1.url}}" /></button></li>
+                    </ul>
+
+                </div>
+                <div class="details col-md-6 image-show">
+                    <h3 class="product-title">{{product.name}}</h3>
+                    <div class="rating">
+                        <div class="stars">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                        <span class="review-no">41 reviews</span>
+                    </div>
+                    <p class="product-description">{{product.description}}.</p>
+                    <h4 class="price">price: <span style="text-decoration: line-through;"> {{product.baseprice}}</span>
+                    </h4>
+
+                    <h4 class="price">current price: <span>{{product.finalprice}}</span></h4>
+                    <p class="vote"><strong>91%</strong> of buyers enjoyed this product ! <strong>(87 votes)</strong>
+                    </p>
+                    <h5 class="sizes inline-flex">sizes:
+                    <select class="form-control" name="" id="" style="width: 100px;">
+                           <option value="s">S</option>
+                           <option value="s">M</option>
+                           <option value="s">L</option>
+                           <option value="s">XL</option>
+                           <option value="s">XXL</option>
+                       </select>
+                    </h5>
+                    <label for="orderquantity fw-bold" >Quantity</label>
+                    <input type="number" id="orderquantity" class="form-control my-2" min="1" style="width: 100px;">
+                   {% if request.user.customer %}
+                    <div class="action my-3">
+                        <a class="btn btn-primary add-to-cart add-to-cart-1" data-productid="{{product.id}}" data-action="add" style="float:right ;">Add to Cart</a>
+                        <a class="like btn btn-default" href="{% url 'wishlist' product.id %}" type="button"><span class="fa fa-heart"></span></a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+
+{% endblock body%}

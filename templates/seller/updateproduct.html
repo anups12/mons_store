@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Product{% endblock title %}
+{% block body%}
+
+
+<div class="container shadow p-5" style="width: 60%; background-color: rgb(197, 221, 243);">
+  <label class="fs-2 fw-bold ">Fill the table to add product</label>
+  <form action="" class="fs-3 fw-bold p-3" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label class="fs-2 fw-bold ">{{form.name.label}}</label>
+    {{form.name}}
+    <label class="fs-2 fw-bold ">{{form.maincategory.label}}</label>
+    {{form.maincategory}}
+    <label class="fs-2 fw-bold ">{{form.subcategory.label}}</label>
+    {{form.subcategory}}
+    <label class="fs-2 fw-bold ">{{form.brand.label}}</label>
+    {{form.brand}}
+    <label class="fs-2 fw-bold ">{{form.baseprice.label}}</label>
+    {{form.baseprice}}
+    <label class="fs-2 fw-bold ">{{form.discount.label}}</label>
+    {{form.discount}}
+    <label class="fs-2 fw-bold ">{{form.finalprice.label}}</label>
+    {{form.finalprice}}
+    <label class="fs-2 fw-bold ">{{form.size.label}}</label>
+    {{form.size}}
+    <label class="fs-2 fw-bold ">{{form.color.label}}</label>
+    {{form.color}}
+    <label class="fs-2 fw-bold ">{{form.description.label}}</label>
+    {{form.description}}
+    <label class="fs-2 fw-bold ">{{form.stock.label}}</label>
+    {{form.stock}} <br>
+    <label class="fs-2  fw-bold ">{{form.pic1.label}}</label>
+    {{form.pic1}} <br>
+    <label class="fs-2 fw-bold ">{{form.pic2.label}}</label>
+    {{form.pic2}} <br>
+    <label class="fs-2 fw-bold ">{{form.pic3.label}}</label>
+    {{form.pic3}} <br>
+    <label class="fs-2 fw-bold ">{{form.pic4.label}}</label>
+    {{form.pic4}} <br>
+
+    <input type="submit" class="btn btn-outline-success w-100" value=" Add Product">
+  </form>
+</div>
+
+
+
+
+
+
+{% endblock body%}

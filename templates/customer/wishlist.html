@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block wish %} active{% endblock wish%}
+{% block title %}WIshlist {% endblock title %}
+{% block body%}
+<link rel="stylesheet" href="{% static 'css/Product.css' %}">
+
+<div class="cart-wrap">
+    <a class="btn btn-outline-info text-dark fw-bold mb-2 ms-3" href="{% url 'home' %}">&lArr; Shop More</a>
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="main-heading mb-10">My wishlist</div>
+                <div class="table-wishlist">
+                    <table cellpadding="0" cellspacing="0"  width="100%">
+                        <thead>
+                            <tr>
+                                <th width="35%">Product Name</th>
+                                <th width="15%">Unit Price</th>
+                                <th width="15%">Stock Status</th>
+                                <th width="15%"></th>
+                                <th width="10%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for li in list %}
+                            <tr>
+                                <td width="35%">
+                                    <div class="display-flex align-center">
+                                        <div class="img-product">
+                                           <a href="{% url 'product_detail' li.product.id %}"> <img src="{{li.product.pic1.url}}" alt="" class="mCS_img_loaded"></a>
+                                        </div>
+                                        <div class="name-product">
+                                            {{li.product.name}}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td width="15%" class="price">{{li.product.finalprice}}</td>
+                                <td width="15%"><span class="in-stock-box">{{li.product.stock}}</span></td>
+                                <td width="15%"><a data-productid="{{li.product.id}}" data-action="add" class="round-black-btn btn small-btn add-to-cart">Add to Cart</a></td>
+                                <td width="10%" class="text-center"><a href="{% url 'deletewishlist' li.id %}" class="trash-icon"><i class="fa fa-trash"></i></a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            <hr>
+                <div class="row">
+                    <div class="col-md-6 fw-bold">
+                        Total NUmber of products  :-{{wishlistitems}}
+                    </div>
+                    <div class="col-md-6 fw-bold">
+                        Total Amount :-{{final_price}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock body%}

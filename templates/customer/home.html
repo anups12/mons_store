@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block home %}active{% endblock home%}
+{% block title %}Home{% endblock title %}
+{% block body%}
+<link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<div class="container-fluid  p-0 mb-2" style="margin-top: 60px; height: 70vh;">
+  <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="2000">
+        <img src="{% static 'images/1.jpg' %}" class="d-block w-100 carousel-height" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Deals of the day</h5>
+        </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="{% static 'images/5.jpg' %}" class="d-block w-100 carousel-height" height="500" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Best deals today</h5>
+        </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="{% static 'images/4.jpg' %}" class="d-block w-100 carousel-height" height="500" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5>New launch </h5>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next hidden" type="button" data-bs-target="#carouselExampleDark"
+      data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+<div class="container-fluid p-0 mt-2 ">
+  <h2 class="fw-bold text-light text-center bg-success p-1 my-3">Featured Products </h2>
+  <hr>
+  <div class="row p-3  d-flex  background"
+    style="flex-wrap: nowrap; overflow-x: scroll; background-blend-mode: multiply;">
+    {% for prod in product %}
+    <div class="col-md-3">
+      <a href="{% url 'prod_detail' prod.id %}" class="text-decoration-none">
+        <div class="card mx-2" style="height: 350px; overflow: hidden;">
+          <img src="{{prod.pic1.url}}" class="card-img-top image-hover" height="200px" alt="...">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">{{prod.name}}</h5>
+            <small> <span class="text-danger">Price:- <s> {{prod.baseprice}}</s> </span> <span
+                class="text-success mx-3"> Rs.{{prod.discount}} Off</span> <br><span class="text-primary">Final Price:-
+                <strong>{{prod.finalprice}} Rs.</strong></span></small>
+            <small>
+              <p class="card-text py-1 text-info">{{prod.description}}</p>
+            </small>
+            <span class="brand">{{prod.brand}}</span>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<div class="container-fluid p-0 ">
+  <h2 class="fw-bold text-light text-center bg-success p-1 my-3">Women Products </h2>
+  <hr>
+  <div class="row p-3  d-flex  background"
+    style="flex-wrap: nowrap; overflow-x: scroll; background-blend-mode: multiply;">
+    {% for prod in women %}
+    <div class="col-md-3 ">
+      <a href="{% url 'prod_detail' prod.id %}" class="text-decoration-none">
+        <div class="card mx-2" style="height: 350px; overflow: hidden;">
+          <img src="{{prod.pic1.url}}" class="card-img-top image-hover" height="200px" alt="...">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">{{prod.name}}</h5>
+            <small> <span class="text-danger">Price:- <s> {{prod.baseprice}}</s> </span> <span
+                class="text-success mx-3"> Rs.{{prod.discount}} Off</span> <br><span class="text-primary">Final
+                Price:-
+                <strong>{{prod.finalprice}} Rs.</strong></span></small>
+            <small>
+              <p class="card-text py-1 text-info">{{prod.description}}</p>
+            </small>
+            <span class="brand">{{prod.brand}}</span>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<div class="container-fluid p-0 ">
+  <h2 class="fw-bold text-light text-center bg-success p-1 my-3">Mens Products </h2>
+  <hr>
+  <div class="row p-3  d-flex  background"
+    style="flex-wrap: nowrap; overflow-x: scroll; background-blend-mode: multiply;">
+    {% for prod in men %}
+    <div class="col-md-3 ">
+      <a href="{% url 'prod_detail' prod.id %}" class="text-decoration-none">
+        <div class="card mx-2" style="height: 350px; overflow: hidden;">
+          <img src="{{prod.pic1.url}}" class="card-img-top image-hover" height="200px" alt="...">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">{{prod.name}}</h5>
+            <small> <span class="text-danger">Price:- <s> {{prod.baseprice}}</s> </span> <span
+                class="text-success mx-3"> Rs.{{prod.discount}} Off</span> <br><span class="text-primary">Final
+                Price:-
+                <strong>{{prod.finalprice}} Rs.</strong></span></small>
+            <small>
+              <p class="card-text py-1 text-info">{{prod.description}}</p>
+            </small>
+            <span class="brand">{{prod.brand}}</span>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<h2 class="fw-bold text-light text-center bg-success p-1 my-3">Best Selling Products </h2>
+<section>
+  <!-- Swiper -->
+
+  <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        {% for pro in product %}
+          <div class="swiper-slide">
+              <img src="{{pro.pic1.url}}" />
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-pagination"></div>
+  </div>
+</section>
+<!-- Swiper JS -->
+
+
+
+<div class="container-fluid p-0 ">
+  <h2 class="fw-bold text-light text-center bg-success p-1 my-3">Kids Products </h2>
+  <hr>
+  <div class="row p-3  d-flex  background"
+    style="flex-wrap: nowrap; overflow-x: scroll; background-blend-mode: multiply;">
+    {% for prod in kids %}
+    <div class="col-md-3 ">
+      <a href="{% url 'prod_detail' prod.id %}" class="text-decoration-none">
+        <div class="card mx-2" style="height: 350px; overflow: hidden;">
+          <img src="{{prod.pic1.url}}" class="card-img-top image-hover" height="200px" alt="...">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">{{prod.name}}</h5>
+            <small> <span class="text-danger">Price:- <s> {{prod.baseprice}}</s> </span> <span
+                class="text-success mx-3"> Rs.{{prod.discount}} Off</span> <br><span class="text-primary">Final
+                Price:-
+                <strong>{{prod.finalprice}} Rs.</strong></span></small>
+            <small>
+              <p class="card-text py-1 text-info">{{prod.description}}</p>
+            </small>
+            <span class="brand">{{prod.brand}}</span>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="container-fluid p-0 ">
+  <h2 class="fw-bold text-light text-center bg-success p-1 my-3">Electronics Products </h2>
+  <hr>
+  <div class="row p-3  d-flex  background"
+    style="flex-wrap: nowrap; overflow-x: scroll; background-blend-mode: multiply;">
+    {% for prod in electronics %}
+    <div class="col-md-3 ">
+      <a href="{% url 'prod_detail' prod.id %}" class="text-decoration-none">
+        <div class="card mx-2" style="height: 350px; overflow: hidden;">
+          <img src="{{prod.pic1.url}}" class="card-img-top image-hover" height="200px" alt="...">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">{{prod.name}}</h5>
+            <small> <span class="text-danger">Price:- <s> {{prod.baseprice}}</s> </span> <span
+                class="text-success mx-3"> Rs.{{prod.discount}} Off</span> <br><span class="text-primary">Final
+                Price:-
+                <strong>{{prod.finalprice}} Rs.</strong></span></small>
+            <small>
+              <p class="card-text py-1 text-info">{{prod.description}}</p>
+            </small>
+            <span class="brand">{{prod.brand}}</span>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+  // / Swiper 
+  var swiper = new Swiper(".mySwiper", {
+      effect: "coverflow",
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: "auto",
+      loop:'true',
+      autoplay:{
+          delay:1500,
+          disableOnInteraction:'false'
+      },
+      coverflowEffect: {
+          rotate: 30,
+          stretch: 0,
+          depth: 200,
+          modifier: 1,
+          slideShadows: true,
+      },
+    
+  });
+</script>
+{% endblock body%}

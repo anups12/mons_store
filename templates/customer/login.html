@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block active %}active{% endblock active%}
+{% block title %}Login Page{% endblock title %}
+{% block body%}
+<div class="container shadow p-4  mx-auto" style=" background-color: rgb(197, 221, 243);" >
+    <label class="fs-2 fw-bold " for="">Fill the form to Login </label>
+    <form action="" class="fs-3 fw-bold p-4" method="post" >
+        {% csrf_token %}
+        <label class="fs-2 mt-1 fw-bold " for="">Username :-</label>
+        <input type="text" name="username" class="form-control" placeholder=" UserName"  required="" >
+        <br>
+        <label class="fs-2  mt-1 fw-bold " for="">Password:-</label>
+        <input type="password" name="password" class="form-control" placeholder="Enter Password"  required="" >
+        <br>
+        <input type="submit" class="btn btn-outline-success w-100" value="Login">
+    </form>
+    <h6 class="my-2 p-2">Don't have an account <a href="{% url 'signin' %}"> :- Signin Here</a></h6>
+    <h6 class="my-2 p-2">Forgot Password <a href="{% url 'reset_password' %}"> :- Change Password</a></h6>
+</div>
+
+{% endblock body%}

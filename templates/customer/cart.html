@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block active %}active{% endblock active%}
+{% block title %}Cart{% endblock title %}
+{% block body%}
+<div class="cart-wrap">
+    <a class="btn btn-outline-info text-dark fw-bold mb-2 ms-3" href="{% url 'home' %}">&lArr; Shop More</a>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="main-heading mb-10">My Cart</div>
+                <div class="table-wishlist">
+                    <table cellpadding="0" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th width="25%">Product </th>
+                                <th width="15%">Unit Price</th>
+                                <th width="15%">Final Price</th>
+                                <th width="15%">No. of units</th>
+                                <th width="10%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for li in item %}
+                            <tr>
+                                <td width="25%">
+                                    <div class="display-flex align-center">
+                                        <div class="img-product">
+                                            {% if not request.user.is_authenticated %}
+                                         <a href="{% url 'product_detail' li.product.id %}"><img src="{{li.product.pic1}}" alt="" class="mCS_img_loaded"></a>
+                                            {% else %}
+                                         <a href="{% url 'product_detail' li.product.id %}"><img src="{{li.product.pic1.url}}" alt="" class="mCS_img_loaded"></a>
+
+                                         {% endif %}
+                                        </div>
+
+                                        <div class="name-product">{{li.product.name}}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td width="15%" class="price">{{li.product.finalprice}}</td>
+                                <td width="15%" class="price">{{ li.get_total }}</td>
+                                <td width="15%" class="price">{{ li.quantity }}</td>
+                                <td width="10%">
+                                    <div class="display-flex " style="flex-direction: column; width:fit-content">
+                                        <a class="round-black-btn small-btn my-1 add-to-cart w-100 text-decoration-none"
+                                            data-productid="{{li.product.id}}" data-action="add">&#43;</a>
+                                        <a class="round-black-btn small-btn add-to-cart text-decoration-none" data-productid="{{li.product.id}}"
+                                            data-action="remove" >&#45;</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-4 fw-bold">
+                        Total Number of products :-{{ order.Total_quantity}}
+                    </div>
+                    <div class="col-md-4 text-center fw-bold">
+                        Total Amount :-{{ order.Total_price}}
+                    </div>
+                    <div class="col-md-4 fw-bold text-center">
+                        {% if cartitem is not 0 %}
+                        <a class="btn btn-outline-success" href="{% url 'checkout' %}">Checkout</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock body%}

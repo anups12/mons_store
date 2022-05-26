@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block shop %}active{% endblock shop%}
+{% block title %}Shop{% endblock title %}
+{% block body%}
+
+<div class="container-fluid m-0 p-0">
+    <div class="row">
+        <div class="col-lg-2 col-sm-2 bg-info">
+            <div class="flex-shrink-0 mt-4">
+                <span class="fs-5 fw-semibold mb-3 ps-1 w-100 btn text-light bg-secondary fw-bold">Apply Filter  </span>
+                <div >
+                    <ul class="list-unstyled ps-0">
+                        <li class="mb-1">
+                            <button class="btn btn-toggle align-items-center fw-bold fs-5 rounded collapsed"
+                                data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
+                                Maincategory
+                            </button>
+                            <div class="collapse" id="home-collapse">
+                                <form action="" method="post" id="home-main">
+                                    <ul class="btn-toggle-nav list-unstyled  fw-normal p-1 small">
+                                        <li><a href="/shop/All/{{sc}}/{{br}}/" id="{{m.id}}"
+                                                class="link-dark fw-bold p-2 rounded maincat"
+                                                style="text-decoration: none ;">All</a></li>
+                                        {% for m in maincategory %}
+                                        <li><a href="/shop/{{m.name}}/{{sc}}/{{br}}/" id="{{m.id}}"
+                                                class="link-dark fw-bold p-2 rounded maincat"
+                                                style="text-decoration: none ;">{{m}}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </form>
+                            </div>
+                        </li>
+                        <li class="mb-1">
+                            <button class="btn btn-toggle align-items-center fw-bold fs-5 rounded collapsed"
+                                data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+                                Subcategory
+                            </button>
+                            <div class="collapse" id="dashboard-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal p-1 small">
+                                    <li><a href="/shop/{{mc}}/All/{{br}}/" class="link-dark p-2 fw-bold rounded"
+                                            style="text-decoration: none ;">All</a></li>
+                                    {% for m in subcategory %}
+                                    <li><a href="/shop/{{mc}}/{{m.name}}/{{br}}/" class="link-dark p-2 fw-bold rounded"
+                                            style="text-decoration: none ;">{{m}}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="mb-1">
+                            <button class="btn btn-toggle align-items-center fw-bold fs-5 rounded collapsed"
+                                data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+                                Brand
+                            </button>
+                            <div class="collapse" id="orders-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal p-1 small">
+                                    <li><a href="/shop/{{mc}}/{{sc}}/All/" class="link-dark p-2 fw-bold rounded"
+                                            style="text-decoration: none ;">All</a></li>
+                                    {% for m in brand %}
+                                    <li><a href="/shop/{{mc}}/{{sc}}/{{m.name}}/" class="link-dark p-2 fw-bold rounded"
+                                            style="text-decoration: none ;">{{m}}</a></li>
+                                    {% endfor %}
+                                </ul>
+                        </li>
+                        <li class="border-top my-3"></li>
+                        <li class="mb-1">
+                            <button class="btn btn-toggle align-items-center rounded collapsed"
+                                data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+                                Account
+                            </button>
+                            <div class="collapse" id="account-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                    <li><a href="{% url 'profilecust' %}" class="link-dark rounded">Profile</a></li>
+                                    <li><a href="#" class="link-dark rounded">Settings</a></li>
+                                    <li><a href="{% url 'logoutcust' %}" class="link-dark rounded">Sign out</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-10 col-sm-10">
+            <div class="row">
+                {% for p in product %}
+                <div class="col-md-4 col-sm-6 p-1 my-2">
+                    {% if request.user.seller %}
+                    <a href="{% url 'product_details' p.id %}" class="text-decoration-none">
+                        {% else %}
+                    <a href="{% url 'prod_detail' p.id %}" class="text-decoration-none">
+                        {% endif  %}
+                        <div class="card" style="height: 350px; overflow: hidden;">
+                            <img src="{{p.pic1.url}}" class="card-img-top" height="200px" alt="...">
+                            <div class="card-body">
+                                <span class="d-flex">
+                                    <h6 class="card-title  me-3 ">MRP:- <del>{{p.baseprice}}Rs</del></h6>
+                                    <h6 class="card-title ">{{p.discount}} Rs Off</h6>
+                                </span>
+                                <span class="d-flex">
+                                    <h5 class="card-title fw-bold fs-5">Final Price:-{{p.finalprice}}</h5>
+                                </span>
+                    {% if request.user.customer %}
+                    <a class="btn btn-primary add-du    to-cart" data-productid="{{p.id}}" data-action="add" style="float:right ;">Add to Cart</a>
+                    {% endif  %}
+                                <h7 class="card-title  mx-2">Color:-{{p.color}}</h5><br>
+                                <h7 class="card-text nowrap" style="overflow: hidden ;line-height: 10px;">{{p.description}}</h7>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static  'js/jquery.js' %}"></script>
+<script>
+    document.querySelectorAll('.maincat').forEach(item => {
+        item.addEventListener('click', event => {
+            var url = '/shop/'
+
+        })
+    })
+
+    $("#home-main").change(function () {
+        $("#")
+    })
+
+</script>
+
+
+{% endblock body%}

@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Seller Profile {% endblock title %}
+{% block body%}
+<h3><a class="btn btn-outline-danger m-3 fw-bold" href="{%  url 'reset_password' %}">  Change Password  </a></h3>
+
+<div class="container-fluid  p-5" style=" background-color: rgb(175, 207, 237);">
+    <div class="row">
+        <div class="col-md-5 col-sm-12 shadow">
+            <div class="card p-2">
+                <img src="{{user.pic.url}}" style="height: 70vh; border-radius: 30%;" alt="">
+            </div>
+        </div>
+        <div class="col-md-7 col-sm-12 shadow ">
+            <div class="card p-3">
+                <h2 class="w-100 text-center bg-info p-2 fw-bold">User Data</h2>
+                <table class="table table-striped table-dark table-hover ">
+                    <tr>
+                        <th>Name</th>
+                        <td>{{user.name}}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{user.email}}</td>
+                    </tr>
+                    <tr>
+                        <th>Phone</th>
+                        <td>{{user.phone}}</td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td>{{user.address}}</td>
+                    </tr>
+                    <tr>
+                        <th>Pin</th>
+                        <td>{{user.pin}}</td>
+                    </tr>
+                    <tr>
+                        <th>City</th>
+                        <td>{{user.city}}</td>
+                    </tr>
+                    <tr>
+                        <th>State</th>
+                        <td>{{user.state}}</td>
+                    </tr>
+                    <tr>
+                        <th>Update Profile</th>
+                        <td><a class="btn btn-outline-success" href="{% url 'update_profile' user.id %}">Update
+                                Profile</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% if request.user.seller %}
+<div class="container-fluid shadow" style=" background-color: rgb(175, 207, 237);">
+    <h2 class="w-100 bg-info p-3 text-center text-light  ">Add Products  <a class="text-light fw-bold" style="text-decoration: none;" href="{% url 'product' %}">+</a></h2>
+</div>
+<div class="container-fluid shadow align-item-center" style=" background-color: rgb(175, 207, 237); height: 80vh; overflow-y: scroll;">
+    {% for p in product %}
+    <div class="row p-2">
+        <div class="col-md-2 col-sm-12">
+          <a href="{% url 'product_detail' p.id %}">  <img src="{{p.pic1.url}}" style="width: 80%; height: 110px; padding: 2px;" alt=""></a>
+        </div>
+        <div class="col-md-10 col-sm-12 col-12">
+            <table class="table table-striped table-dark table-hover ">
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Discount</th>
+                    <th>Maincategory</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>  
+                  <tr>  
+                    <td>{{p.name}}</td>
+                    <td>{{p.baseprice}}</td>
+                    <td>{{p.discount}}</td>
+                    <td>{{p.maincategory}}</td>
+                    <td><a class="btn btn-outline-success btn-sm" href="{% url 'update_product' p.id %}">Edit</a></td>
+                    <td><a class="btn btn-outline-warning btn-sm">Delete</a></td>
+                </tr>
+            </table>
+        </div>    
+    </div>
+    <hr>
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock body%}

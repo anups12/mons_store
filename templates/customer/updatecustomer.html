@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Update Customer{% endblock title %}
+{% block body%}
+<div class="container shadow" style=" background-color: rgb(197, 221, 243);" >
+    <label class="fs-2 fw-bold " >Fill the form to Update profile Information </label>
+    <hr>
+    <form action="" class="fs-3 fw-bold p-5 bg-info text-center" method="post" enctype="multipart/form-data" >
+        {% csrf_token %}
+        <label class="fs-2 mt-3 me-5 fw-bold ">{{form.name.label}} :-</label>
+        {{form.name}} <br>
+        <label class="fs-2 mt-3 me-5 fw-bold " >{{form.email.label}}:-</label>
+        {{form.email}} <br>
+        <label class="fs-2 mt-3 me-5 fw-bold " >{{form.phone.label}}:-</label>
+        {{form.phone}} <br>
+        <label class="fs-2 mt-3 me-5 fw-bold " >{{form.address.label}}:-</label>
+        {{form.address}} <br>
+        <label class="fs-2 mt-3 me-5 fw-bold " >{{form.city.label}}:-</label>
+        {{form.city}} <br>
+        <label class="fs-2 mt-3 me-5 fw-bold " >{{form.state.label}}:-</label>
+        {{form.state}} <br>
+        <label class="fs-2 mt-3 me-5 fw-bold " >{{form.pin.label}}:-</label>
+        {{form.pin}} <br>
+        <label class="fs-2 mt-3 me-5 fw-bold " >{{form.pic.label}}:-</label>
+        {{form.pic}} <br>
+        <input type="submit" class="btn btn-outline-success w-100" value="Update User">
+
+    </form>
+</div>
+
+
+
+
+
+{% endblock body%}
