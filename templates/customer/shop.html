@@ -100,7 +100,7 @@
                                     <h5 class="card-title fw-bold fs-5">Final Price:-{{p.finalprice}}</h5>
                                 </span>
                     {% if request.user.customer %}
-                    <a class="btn btn-primary add-du    to-cart" data-productid="{{p.id}}" data-action="add" style="float:right ;">Add to Cart</a>
+                    <a class="btn btn-primary add-to-cart" data-productid="{{p.id}}" data-action="add" style="float:right ;">Add to Cart</a>
                     {% endif  %}
                                 <h7 class="card-title  mx-2">Color:-{{p.color}}</h5><br>
                                 <h7 class="card-text nowrap" style="overflow: hidden ;line-height: 10px;">{{p.description}}</h7>
